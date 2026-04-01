@@ -1,13 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        sonarScanner 'SonarScanner'
-    }
-
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
@@ -18,12 +14,13 @@ pipeline {
                 SONAR_TOKEN = credentials('sonarqube-token')
             }
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh '''
-                      sonar-scanner \
-                        -Dsonar.login=$SONAR_TOKEN
-                    '''
-                }
+                sh '''
+                  /opt/sonar-scanner/bin/sonar-scanner \
+                    -Dsonar.projectKey=longchain_python \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login=$SONAR_TOKEN
+                '''
             }
         }
     }
