@@ -20,18 +20,15 @@ pipeline {
 
         stage('SonarQube Scan') {
             steps {
-                withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
-                    sh '''
-                    echo "===== RUNNING SONARQUBE SCAN ====="
+                sh '''
+                echo "===== RUNNING SONARQUBE SCAN ====="
 
-                    /opt/sonar-scanner/bin/sonar-scanner \
-                      -Dsonar.projectKey=longchain_python \
-                      -Dsonar.projectName=LongChain_Python_Project \
-                      -Dsonar.sources=. \
-                      -Dsonar.host.url=http://localhost:9000 \
-                      -Dsonar.login=$SONAR_TOKEN
-                    '''
-                }
+                /opt/sonar-scanner/bin/sonar-scanner \
+                  -Dsonar.projectKey=new_sonar \
+                  -Dsonar.sources=. \
+                  -Dsonar.host.url=http://localhost:9000 \
+                  -Dsonar.login=sqp_7fa7154bfca0ea5fa5da841bdfa51fa124a9d34c
+                '''
             }
         }
     }
@@ -45,3 +42,4 @@ pipeline {
         }
     }
 }
+``
