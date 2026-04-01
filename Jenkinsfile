@@ -25,8 +25,8 @@ pipeline {
                     echo "===== RUNNING SONARQUBE SCAN ====="
 
                     /opt/sonar-scanner/bin/sonar-scanner \
-                      -Dsonar.projectKey=new_sonar \
-                      -Dsonar.projectName=new_sonar \
+                      -Dsonar.projectKey=longchain_python \
+                      -Dsonar.projectName=LongChain_Python_Project \
                       -Dsonar.sources=. \
                       -Dsonar.host.url=http://localhost:9000 \
                       -Dsonar.login=$SONAR_TOKEN
